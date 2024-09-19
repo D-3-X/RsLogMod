@@ -10,6 +10,7 @@
 - [Log Levels & Prefixes](#log-levels--prefixes)
 - [Customization](#customization)
   - [Set Log Folder Path](#set-log-folder-path)
+  - [Set Archive Folder Path](#set-archived-log-folder-path)
   - [Set Maximum Log Size](#set-maximum-log-size)
   - [Enable or Disable Log Rotation](#enable-or-disable-log-rotation)
   - [Display Configuration](#display-configuration)
@@ -102,7 +103,7 @@ RsLogMod supports several log levels, each with its own prefix:
 
 ## Customization
 
-To customize how `RsLogMod` operates, such as changing the log file directory, setting the maximum log file size, or enabling log rotation, you can use the `Configure` class.
+To customize how `RsLogMod` operates, such as changing the log file directory, archived log folder path, setting the maximum log file size, or enabling log rotation, you can use the `Configure` class.
 
 ### Set Log Folder Path
 
@@ -111,6 +112,16 @@ from RsLogMod import Configure
 
 # Set log folder path
 Configure.set_log_folder_path('/new/log/directory')
+```
+
+### Set Archived Log Folder Path
+
+
+```python
+from RsLogMod import Configure
+
+# Set the path to the desired folder for storing old logs
+Configure.set_archive_path('/new/archive/directory')
 ```
 
 ### Set Maximum Log Size

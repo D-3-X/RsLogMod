@@ -15,6 +15,16 @@ class Configure:
             print("No configuration found.")
 
     @classmethod
+    def set_archive_path(cls, path=None):
+        """Sets the archive path and updates the configuration."""
+
+        if isinstance(path, str):
+            if not os.path.exists(path):
+                os.makedirs(path)
+
+        update_config_file('archive_folder', path)
+
+    @classmethod
     def set_log_folder_path(cls, path=None):
         """Sets the log folder path and updates the configuration."""
 
