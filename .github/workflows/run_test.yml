@@ -12,10 +12,10 @@ jobs:
 
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v3  # Updated to v3 to remove Node.js 12 deprecation warnings
+        uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v4  # Updated to v4 to use supported Node.js versions
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
@@ -29,9 +29,9 @@ jobs:
           python RsLogMod/tests/test_script.py
 
       - name: Update badge on success
-        if: success()  # Only run if the tests are successful
+        if: success()
         run: echo "Tests passed, update the badge!"
         
       - name: Handle failure
-        if: failure()  # Run only if tests fail
+        if: failure()
         run: echo "Tests failed, updating the badge accordingly."
