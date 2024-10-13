@@ -1,6 +1,6 @@
 # RsLogMod
 
-**RsLogMod** is a flexible and powerful Python logging module designed to help manage log files with features such as log rotation, customizable log paths, and various log levels. It's designed to be simple to use while offering extensive customization options.
+**RsLogMod** is a flexible and powerful Python logging module designed to manage log files with features such as log rotation, customizable paths, and various log levels. It is easy to use yet offers extensive customization options.
 
 ## Table of Contents
 
@@ -10,22 +10,23 @@
 - [Log Levels & Prefixes](#log-levels--prefixes)
 - [Customization](#customization)
   - [Set Log Folder Path](#set-log-folder-path)
-  - [Set Archive Folder Path](#set-archived-log-folder-path)
+  - [Set Archive Folder Path](#set-archive-folder-path)
   - [Set Maximum Log Size](#set-maximum-log-size)
   - [Enable or Disable Log Rotation](#enable-or-disable-log-rotation)
+  - [Enable or Disable Verbose Mode](#enable-or-disable-verbose-mode)
   - [Display Configuration](#display-configuration)
 - [Configuration](#configuration)
 - [License](#license)
 
 ## Installation
 
-To install the module:
+Install RsLogMod using `pip`:
 
 ```bash
 pip install rslogmod
 ```
 
-Import the module into your project:
+Then import the module:
 
 ```python
 from RsLogMod import rlog, Configure
@@ -33,151 +34,133 @@ from RsLogMod import rlog, Configure
 
 ## Getting Started
 
-Here’s a quick example to get you started with logging:
+Here’s a simple example:
 
 ```python
 from RsLogMod import rlog, Configure
 
-# set a folder path this path will be saved in the rlogmod config file so this only needs to be done once
-Configure.set_log_folder_path('path/to/target/folder')
+# Set log folder path (only needed once, saved in config)
+Configure.set_log_folder_path('path/to/log/folder')
 
-# Log a simple message
+# Log a message
 rlog(log_name='my_log', log_level=1, log_entry='This is a log entry.')
 ```
 
 ### Explanation
-
-- **`log_name`**: The name of the log file (e.g., `my_log`).
-- **`log_level`**: The log level, where `1` corresponds to `INFO`.
-- **`log_entry`**: The message you want to log.
-
-This will create a log file named `my_log.log` (if it doesn't already exist) in the configured directory with the entry formatted as shown below.
-
-### Example Output
-
-If the example above is executed with `log_level=1`, the log entry will look like this in the log file:
-
-```
-[INFO] 2024-12-02 13:20: This is a log entry.
-```
-
-Here’s how the output would differ for each log level:
-
-- **`log_level=0`**: `[DEBUG] 2024-12-02 13:20: This is a log entry.`
-- **`log_level=1`**: `[INFO] 2024-12-02 13:20: This is a log entry.`
-- **`log_level=2`**: `[ERROR] 2024-12-02 13:20: This is a log entry.`
-- **`log_level=3`**: `[CRITICAL] 2024-12-02 13:20: This is a log entry.`
-- **`log_level=4`**: `[SEC-ALERT] 2024-12-02 13:20: This is a log entry.`
-- **`log_level=5`**: `[SEC-BREACH] 2024-12-02 13:20: This is a log entry.`
+- **`log_name`**: Name of the log file (e.g., `my_log`).
+- **`log_level`**: Log level (`1` for INFO, `2` for ERROR, etc.).
+- **`log_entry`**: The message to log.
+- **`verbose`**: Optionally set `verbose=True` to print the message to the terminal as well.
 
 ## Default Behavior
 
-RsLogMod comes with the following default behaviors:
-
-1. **Log Rotation Enabled by Default**: Log rotation is enabled by default. This means that when a log file reaches the maximum size, it will automatically be archived, and a new log file will be created.
-
-2. **Default Maximum Log Size**: The default maximum log file size is set to 50 MB. This can be adjusted using the configuration settings.
-
-3. **No Log Folder Path Set**: If you do not set a log folder path using the `Configure.set_log_folder_path()` method, RsLogMod will **only log to the terminal** and will not create any log files. 
-
-4. **Configuration Persistence**: Once you set the log folder path, this path will be stored in the `configs.json` file, and all subsequent logs will be written to files within that directory. You only need to set the log folder path once; it will persist across sessions unless explicitly changed.
-
-These defaults ensure that RsLogMod is ready to use out of the box, but also easily customizable for different environments and needs.
+1. **Log Rotation**: Enabled by default (log files rotate when they reach the set max size).
+2. **Log to File and Terminal**: Logs are written to the file, and verbose mode controls whether they are printed to the terminal.
+3. **Config Persistence**: Once paths are set, they are stored in a config file for future sessions.
 
 ## Log Levels & Prefixes
 
-RsLogMod supports several log levels, each with its own prefix:
+RsLogMod supports the following log levels, each with its own prefix:
 
-- **`0`**: `[DEBUG]`  
-  - For detailed debugging information.
-- **`1`**: `[INFO]`  
-  - For general information about program execution.
-- **`2`**: `[ERROR]`  
-  - For errors that occur during execution.
-- **`3`**: `[CRITICAL]`  
-  - For critical issues that need immediate attention.
-- **`4`**: `[SEC-ALERT]`  
-  - For security-related alerts.
-- **`5`**: `[SEC-BREACH]`  
-  - For security breaches or serious security issues.
+- **0**: `[DEBUG]` - Detailed debug information.
+- **1**: `[INFO]` - General program execution info.
+- **2**: `[ERROR]` - Errors encountered during execution.
+- **3**: `[CRITICAL]` - Critical issues that need attention.
+- **4**: `[SEC-ALERT]` - Security-related alerts.
+- **5**: `[SEC-BREACH]` - Security breaches or serious issues.
 
 ## Customization
-
-To customize how `RsLogMod` operates, such as changing the log file directory, archived log folder path, setting the maximum log file size, or enabling log rotation, you can use the `Configure` class.
 
 ### Set Log Folder Path
 
 ```python
-from RsLogMod import Configure
-
-# Set log folder path
-Configure.set_log_folder_path('/new/log/directory')
+Configure.set_log_folder_path('/path/to/logs')
 ```
 
-### Set Archived Log Folder Path
-
+### Set Archive Folder Path
 
 ```python
-from RsLogMod import Configure
-
-# Set the path to the desired folder for storing old logs
-Configure.set_archive_path('/new/archive/directory')
+Configure.set_archive_path('/path/to/archive')
 ```
 
 ### Set Maximum Log Size
 
 ```python
-from RsLogMod import Configure
-
-# Set max size for log files to 20 MB
-Configure.set_log_file_max_size(20)
+Configure.set_log_file_max_size(50)  # Max size is set in MB
 ```
 
 ### Enable or Disable Log Rotation
 
 ```python
-from RsLogMod import Configure
-
-# Enable log rotation
-Configure.enable_log_rotation(True)
+Configure.enable_log_rotation(True)  # Enable or disable log rotation
 ```
+
+### Enable or Disable Verbose Mode
+
+Verbose mode controls whether logs are printed to the terminal. It can be controlled globally via the config or for each individual `rlog()` call.
+
+#### Global Verbose Mode
+
+Enable verbose globally, applying to all future log entries unless overridden:
+
+```python
+Configure.enable_verbose(True)  # Enable terminal printing for all logs
+```
+
+#### Per-Entry Verbose Mode
+
+Control verbosity per log entry by using the `verbose` parameter in `rlog()`:
+
+```python
+rlog(log_name='my_log', log_level=1, log_entry='This will print to terminal', verbose=True)
+```
+
+### Verbose Mode Behavior
+
+- If `verbose` is passed in `rlog()`, it overrides the global config.
+- If not passed (`None`), it falls back to the config file setting.
+- If both are unset (`None`), logs will only be written to the file.
+
+#### Example Configuration:
+
+```json
+{
+    "log_rotation": true,
+    "verbose": null,
+    "max_size_in_mega_bytes": 50,
+    "log_folder": "path/to/logs",
+    "archive_folder": "path/to/archive"
+}
+```
+
+- **`"verbose": true`**: Logs print to terminal and file.
+- **`"verbose": false`**: Logs are only written to the file.
+- **`"verbose": null`**: Behavior is controlled by the individual `rlog()` calls.
 
 ### Display Configuration
 
 ```python
-from RsLogMod import Configure
-
-# Display the current configuration
-Configure.display()
+Configure.display()  # Display the current configuration in JSON format
 ```
-
-### Explanation
-
-- **`Configure`**: This class manages the configuration settings for RsLogMod, such as where log files are stored, how large they can grow before being rotated, and whether log rotation is enabled.
-- **`set_log_folder_path(path: str)`**: Sets the directory where logs are saved.
-- **`set_log_file_max_size(mega_bytes: int)`**: Sets the maximum size for log files in megabytes.
-- **`enable_log_rotation(value: bool)`**: Enables or disables log rotation.
-- **`display()`**: Prints the current configuration in a JSON format for easy viewing.
 
 ## Configuration
 
-RsLogMod uses a `configs.json` file to store its settings. Here’s an example configuration file:
+RsLogMod stores its settings in a `configs.json` file:
 
 ```json
 {
   "log_rotation": true,
-  "max_size_in_mega_bytes": 10,
+  "verbose": null,
+  "max_size_in_mega_bytes": 50,
   "log_folder": "/path/to/logs",
   "archive_folder": "/path/to/logs/archived"
 }
 ```
 
-- **log_rotation**: Enables or disables log rotation.
-- **max_size_in_mega_bytes**: The maximum size of a log file before it is rotated.
-- **log_folder**: The directory where log files will be stored.
-- **archive_folder**: The directory where old log files will be stored after rotation.
-
-These settings can be updated programmatically using the `Configure` class, as shown in the examples above.
+- **`log_rotation`**: Enables or disables log rotation.
+- **`verbose`**: Controls whether logs are printed to the terminal.
+- **`log_folder`**: Directory where logs are saved.
+- **`archive_folder`**: Directory where archived logs are stored.
 
 ## License
 
