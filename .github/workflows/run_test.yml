@@ -28,13 +28,12 @@ jobs:
 
       - name: Run Tests
         run: |
-          python RsLogMod/RsLogMod/tests/test_script.py
+          python RsLogMod/tests/test_script.py
 
-      - name: Update Badge (optional)
+      - name: Success message
         if: success()
-        run: |
-          echo "All tests passed. Badge will reflect success."
-        if: failure()
-        run: |
-          echo "Some tests failed. Badge will reflect failure."
+        run: echo "All tests passed. Badge will reflect success."
 
+      - name: Failure message
+        if: failure()
+        run: echo "Some tests failed. Badge will reflect failure."
