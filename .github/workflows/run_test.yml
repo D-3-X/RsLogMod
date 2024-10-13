@@ -28,5 +28,5 @@ jobs:
 
     - name: Run tests
       run: |
-        python /tests/test_script.py
+        python RsLogMod/tests/test_script.py
       continue-on-error: false
