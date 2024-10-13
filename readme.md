@@ -1,4 +1,5 @@
-# RsLogMod
+# RsLogMod ![Test Workflow](https://github.com/D-3-X/RsLogMod/actions/workflows/run_test.yml/badge.svg)
+
 
 **RsLogMod** is a flexible and powerful Python logging module designed to manage log files with features such as log rotation, customizable paths, and various log levels. It is easy to use yet offers extensive customization options.
 
