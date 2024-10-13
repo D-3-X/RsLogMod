@@ -28,7 +28,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          python RsLogMod/tests/test_script.py
+          python RsLogMod/RsLogMod/tests/test_script.py
 
       - name: Update Badge (optional)
         if: success()
