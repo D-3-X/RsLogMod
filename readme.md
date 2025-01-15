@@ -19,6 +19,7 @@
   - [Enable or Disable Verbose Mode](#enable-or-disable-verbose-mode)
   - [Display Configuration](#display-configuration)
 - [Configuration](#configuration)
+- [Changelog](#changelog)
 - [License](#license)
 
 ## Installation
