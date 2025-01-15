@@ -5,7 +5,7 @@ with open("readme.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="RsLogMod",
-    version="1.0.2",
+    version="1.1.2",
     description="A versatile logging module for Python projects",
     long_description=long_description,
     long_description_content_type="text/markdown",

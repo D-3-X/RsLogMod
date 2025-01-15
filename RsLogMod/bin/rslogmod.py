@@ -5,7 +5,7 @@ import json
 import os
 
 
-class Configure:
+class RsConfig:
     @classmethod
     def display(cls):
         config_data = load_config_from_file()
@@ -79,3 +79,5 @@ class Logger:
                 file.write(log_headers.get('default', "# Log File #\n"))
         except IOError as e:
             print(f"Failed to create log file: {e}")
+
+Configure = RsConfig

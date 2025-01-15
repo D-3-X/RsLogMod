@@ -165,6 +165,15 @@ RsLogMod stores its settings in a `configs.json` file:
 - **`log_folder`**: Directory where logs are saved.
 - **`archive_folder`**: Directory where archived logs are stored.
 
+
+## Changelog
+
+### [Jan 15, 2025]
+- **Class Name Change**: Renamed the `Configure` class to `RsConfig` for better clarity and consistency in the codebase.
+- **Deprecation Warning**: The `Configure` class is still functional but **deprecated**. It will be removed in **version 2**. A deprecation warning will appear when using the old class.
+- **Action Required**: Start using `RsConfig` in your code to avoid issues in future releases. The old class (`Configure`) will no longer be available in version 2.
+
+
 ## License
 
 This project is licensed under the [MIT License](https://github.com/D-3-X/Rodent-REPO/blob/main/licenses/MIT_License.txt). See the LICENSE file for details.
