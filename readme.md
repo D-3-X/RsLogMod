@@ -1,7 +1,7 @@
 # RsLogMod
 
 
-**RsLogMod* is a flexible and powerful Python logging module designed to manage log files with features such as log rotation, customizable paths, and various log levels. It is easy to use yet offers extensive customization options.
+*RsLogMod* is a flexible and powerful Python logging module designed to manage log files with features such as log rotation, customizable paths, and various log levels. It is easy to use yet offers extensive customization options.
 
 
 
