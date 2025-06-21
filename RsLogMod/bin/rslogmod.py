@@ -80,4 +80,9 @@ class Logger:
         except IOError as e:
             print(f"Failed to create log file: {e}")
 
+""" 
+Added below line for backward compatibility (Configure) will still work.
+BUT you should start using (RsLogMod) or your programs might break in the future.
+(Configure) wont work in version 2. 
+"""
 Configure = RsConfig
