@@ -169,11 +169,13 @@ RsLogMod stores its settings in a `configs.json` file:
 
 ## Changelog
 
-### [Jan 15, 2025]
-- **Class Name Change**: Renamed the `Configure` class to `RsConfig` for better clarity and consistency in the codebase.
-- **Deprecation Warning**: The `Configure` class is still functional but **deprecated**. It will be removed in **version 2**. A deprecation warning will appear when using the old class name.
-- **Action Required**: Start using `RsConfig` in your code to avoid issues in future releases. The old class (`Configure`) will NOT be available in version 2.
+### \[Jun 21, 2025] — v1.2.0
 
+* **Class Rename:** The `Configure` class has been renamed to `RsConfig` for improved clarity and consistency.
+* **Backward Compatibility:** The `Configure` class remains fully functional in this version for compatibility.
+* **Important:** `Configure` **will be removed in version 2.0.0**.
+* **Upgrade Notice:** Update your code to use `RsConfig` before upgrading to version 2.0.0 to avoid breakage.
+* **Internal:** All references and docs updated to use `RsConfig`.
 
 ## License
 
