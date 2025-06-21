@@ -33,7 +33,7 @@ pip install rslogmod
 Then import the module:
 
 ```python
-from RsLogMod import rlog, Configure
+from RsLogMod import rlog, RsConfig
 ```
 
 ## Getting Started
@@ -41,10 +41,10 @@ from RsLogMod import rlog, Configure
 Here’s a simple example:
 
 ```python
-from RsLogMod import rlog, Configure
+from RsLogMod import rlog, RsConfig
 
 # Set log folder path (only needed once, saved in config)
-Configure.set_log_folder_path('path/to/log/folder')
+RsConfig.set_log_folder_path('path/to/log/folder')
 
 # Log a message
 rlog(log_name='my_log', log_level=1, log_entry='This is a log entry.')
@@ -78,25 +78,25 @@ RsLogMod supports the following log levels, each with its own prefix:
 ### Set Log Folder Path
 
 ```python
-Configure.set_log_folder_path('/path/to/logs')
+RsConfig.set_log_folder_path('/path/to/logs')
 ```
 
 ### Set Archive Folder Path
 
 ```python
-Configure.set_archive_path('/path/to/archive')
+RsConfig.set_archive_path('/path/to/archive')
 ```
 
 ### Set Maximum Log Size
 
 ```python
-Configure.set_log_file_max_size(50)  # Max size is set in MB
+RsConfig.set_log_file_max_size(50)  # Max size is set in MB
 ```
 
 ### Enable or Disable Log Rotation
 
 ```python
-Configure.enable_log_rotation(True)  # Enable or disable log rotation
+RsConfig.enable_log_rotation(True)  # Enable or disable log rotation
 ```
 
 ### Enable or Disable Verbose Mode
@@ -108,7 +108,7 @@ Verbose mode controls whether logs are printed to the terminal. It can be contro
 Enable verbose globally, applying to all future log entries unless overridden:
 
 ```python
-Configure.enable_verbose(True)  # Enable terminal printing for all logs
+RsConfig.enable_verbose(True)  # Enable terminal printing for all logs
 ```
 
 #### Per-Entry Verbose Mode
@@ -144,7 +144,7 @@ rlog(log_name='my_log', log_level=1, log_entry='This will print to terminal', ve
 ### Display Configuration
 
 ```python
-Configure.display()  # Display the current configuration in JSON format
+RsConfig.display()  # Display the current configuration in JSON format
 ```
 
 ## Configuration
@@ -170,9 +170,9 @@ RsLogMod stores its settings in a `configs.json` file:
 ## Changelog
 
 ### [Jan 15, 2025]
-- **Class Name Change**: Renamed the `Configure` class to `RsConfig` for better clarity and consistency in the codebase.
-- **Deprecation Warning**: The `Configure` class is still functional but **deprecated**. It will be removed in **version 2**. A deprecation warning will appear when using the old class.
-- **Action Required**: Start using `RsConfig` in your code to avoid issues in future releases. The old class (`Configure`) will no longer be available in version 2.
+- **Class Name Change**: Renamed the `RsConfig` class to `RsConfig` for better clarity and consistency in the codebase.
+- **Deprecation Warning**: The `RsConfig` class is still functional but **deprecated**. It will be removed in **version 2**. A deprecation warning will appear when using the old class.
+- **Action Required**: Start using `RsConfig` in your code to avoid issues in future releases. The old class (`RsConfig`) will no longer be available in version 2.
 
 
 ## License
