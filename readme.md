@@ -47,11 +47,11 @@ from RsLogMod import rlog, RsConfig
 RsConfig.set_log_folder_path('path/to/log/folder')
 
 # Log a message
-rlog(log_name='my_log', log_level=1, log_entry='This is a log entry.')
+rlog(log_file_name='my_log', log_level=1, log_entry='This is a log entry.')
 ```
 
 ### Explanation
-- **`log_name`**: Name of the log file (e.g., `my_log`).
+- **`log_file_name`**: Name of the log file (e.g., `my_log`).
 - **`log_level`**: Log level (`1` for INFO, `2` for ERROR, etc.).
 - **`log_entry`**: The message to log.
 - **`verbose`**: Optionally set `verbose=True` to print the message to the terminal as well.
@@ -116,7 +116,7 @@ RsConfig.enable_verbose(True)  # Enable terminal printing for all logs
 Control verbosity per log entry by using the `verbose` parameter in `rlog()`:
 
 ```python
-rlog(log_name='my_log', log_level=1, log_entry='This will print to terminal', verbose=True)
+rlog(log_file_name='my_log', log_level=1, log_entry='This will print to terminal', verbose=True)
 ```
 
 ### Verbose Mode Behavior
