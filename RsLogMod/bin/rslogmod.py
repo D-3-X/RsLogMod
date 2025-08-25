@@ -11,6 +11,7 @@ class RsConfig:
         config_data = load_config_from_file()
         if config_data:
             print(json.dumps(config_data, indent=4))
+
         else:
             print("No configuration found.")
 
@@ -27,6 +28,7 @@ class RsConfig:
     def set_log_folder_path(cls, path=None):
         if path is None:
             path = './logs'
+
         if isinstance(path, str) and not os.path.exists(path):
             os.makedirs(path)
         update_config_file('log_folder', path)
@@ -50,6 +52,7 @@ class Logger:
         self.path = format_out_path(log_name) if log_name else None
         self.entry = log_entry or ''
         self.verbose = verbose if verbose is not None else (load_config_from_file('verbose') or False)
+        self.log_name = log_name
 
     def log(self):
         message = f'{self.prefix} {get_current_date()} {get_current_time()}: {self.entry}\n'
@@ -61,7 +64,7 @@ class Logger:
                 return
 
             if not os.path.exists(self.path):
-                self.create_default_log(self.path)
+                self.create_default_log(self.path, header_name=self.log_name)
 
             if load_config_from_file('log_rotation'):
                 rotate_logs()
@@ -73,11 +76,14 @@ class Logger:
             print(f"Failed to write to log file: {e}")
 
     @classmethod
-    def create_default_log(cls, path):
+    def create_default_log(cls, path, header_name=None):
+        log_header = f'\t\t\t\t# {header_name} #\n\n'
         try:
             with open(path, 'w') as file:
-                file.write(log_headers.get('default', "# Log File #\n"))
+                file.write(log_header if header_name is not None else log_headers.get('default', "# Log File #\n"))
+
         except IOError as e:
             print(f"Failed to create log file: {e}")
+
 
 Configure = RsConfig
